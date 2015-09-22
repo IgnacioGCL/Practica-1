@@ -14,6 +14,7 @@ public class Person {
     private final String name;
     private final String surname;
     private final Date birthday;
+    private static long MILLISECONDS_PER_YEAR = (long) (1000*60*60*24*365.25);
 
     public String getName() {
         return name;
@@ -37,10 +38,14 @@ public class Person {
         return name+" "+surname;
     }
     
-    public double getAge(){
+    public int getAge(){
         Date today = new Date();
         
-        return (today.getTime()-birthday.getTime())/(1000*60*60*24*365.25);
+        return (int) miMetodo(today.getTime()-birthday.getTime());
     }
-    
+
+    private long miMetodo(long millis){
+        
+        return millis/MILLISECONDS_PER_YEAR;
+    }
 }
